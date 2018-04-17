@@ -1,4 +1,4 @@
-package gov.dhs.conf.reservationsystem;
+package gov.dhs.conf.reservation;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
