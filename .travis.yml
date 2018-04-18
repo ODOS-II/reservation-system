@@ -13,7 +13,7 @@ deploy:
     secure: "$SECRETACCESSKEY"
   region: "us-east-1"  
   app: "reservation-system"
-  env: "ReservationSystem-env"
+  env: "reservation-system-dev"
   bucket_name: "elasticbeanstalk-us-east-1-539409235947"
   on:
     branch: develop
