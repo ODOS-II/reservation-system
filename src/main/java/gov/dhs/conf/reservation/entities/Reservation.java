@@ -16,6 +16,8 @@ public class Reservation {
 
   @ManyToOne private User user;
 
+  @ManyToOne private Room room;
+
   private String title;
 
   private LocalDateTime startTime;
@@ -30,6 +32,14 @@ public class Reservation {
 
   public void setUser(final User user) {
     this.user = user;
+  }
+
+  public Room getRoom() {
+    return room;
+  }
+
+  public void setRoom(final Room room) {
+    this.room = room;
   }
 
   public String getTitle() {
