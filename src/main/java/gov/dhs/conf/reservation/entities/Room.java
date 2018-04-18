@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 @Entity
 public class Room {
@@ -17,7 +18,9 @@ public class Room {
   private String name;
   private int occupancy;
 
-  @OneToMany private List<AVEquipment> avEquipment;
+  @OneToMany
+  @RestResource(rel = "avEquipment")
+  private List<AVEquipment> avEquipment;
 
   public int getBuildingId() {
     return buildingId;
