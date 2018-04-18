@@ -74,6 +74,7 @@ public class User {
 
   public enum UserType {
     ADMIN,
-    EMPLOYEE
+    EMPLOYEE,
+    MANAGER
   }
 }
