@@ -53,4 +53,10 @@ public class Room {
   public void setAvEquipment(final List<AVEquipment> avEquipment) {
     this.avEquipment = avEquipment;
   }
+
+  public enum Configuration {
+    CLASSROOM,
+    USHAPE,
+    MEETING
+  }
 }
