@@ -201,6 +201,7 @@
 ``` json
 {
   "title": "odos scrum",
+  "room": "http://localhost:8080/rooms/3",
   "user": "http://localhost:8080/users/1",
   "startTime": "2018-04-18T09:54:44.19",
   "endTime": "2018-04-18T10:54:44.192",
@@ -214,6 +215,9 @@
     "_links": {
         "reservation": {
             "href": "http://localhost:8080/reservations/4"
+        },
+        "room": {
+            "href": "http://localhost:8080/reservations/4/room"
         },
         "self": {
             "href": "http://localhost:8080/reservations/4"
