@@ -24,6 +24,14 @@ public class User {
 
   private UserType type;
 
+  public long getId() {
+    return id;
+  }
+
+  public void setId(final long id) {
+    this.id = id;
+  }
+
   public String getUsername() {
     return username;
   }
