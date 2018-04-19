@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Reservation {
@@ -20,9 +21,9 @@ public class Reservation {
 
   private String title;
 
-  private LocalDateTime startTime;
+  @NotNull private LocalDateTime startTime;
 
-  private LocalDateTime endTime;
+  @NotNull private LocalDateTime endTime;
 
   private Room.Configuration roomConfiguration;
 
