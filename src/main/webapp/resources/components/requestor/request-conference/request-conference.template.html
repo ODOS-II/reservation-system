@@ -4,31 +4,33 @@
 
 <div class="content">
   <div class="card">
-    <div class="card-header">Create</div>
+    <div class="card-header">Create Reservation</div>
     <div class="card-body">
-      <form ng-submit="requestConf.submit()">
+      <form name="requestConferenceForm" ng-submit="requestConf.submit()">
         <div class="row">
           <div class="col-sm-6">
             <fieldset>
               <div class="form-group">
                 <label for="emailInput">Email</label>
-                <input class="form-control" id="emailInput" aria-describedby="emailInput" type="email" ng-model="requestConf.email">
+                <input class="form-control" id="emailInput" name="emailInput" aria-describedby="emailInput" type="email" ng-model="requestConf.email"
+                  required>
+              </div>
+              <small class="error text-danger" ng-show="requestConferenceForm.emailInput.$error.email">Not valid email!</small>
+              <div class="form-group">
+                <label for="ends">Date</label>
+                <input id="starts" class="form-control" type="date" ng-model="requestConf.date" required>
               </div>
               <div class="form-group">
-                  <label for="ends">Date</label>
-                  <input id="starts" class="form-control" type="date" ng-model="requestConf.date">
-                </div>
-              <div class="form-group">
                 <label for="ends">Starts</label>
-                <input id="starts" class="form-control" type="time" ng-model="requestConf.starts">
+                <input id="starts" class="form-control" type="time" ng-model="requestConf.starts" required>
               </div>
               <div class="form-group">
                 <label for="ends">Ends</label>
-                <input id="ends" class="form-control" type="time" ng-model="requestConf.ends">
+                <input id="ends" class="form-control" type="time" ng-model="requestConf.ends" required>
               </div>
               <div class="form-group">
                 <label for="buildingPref">Building Preference</label>
-                <select id="buildingPref" class="form-control" ng-model="requestConf.buildingPref" ng-change="requestConf.reloadRooms()">
+                <select id="buildingPref" class="form-control" ng-model="requestConf.buildingPref" ng-change="requestConf.reloadRooms()" required>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -36,7 +38,7 @@
               </div>
               <div class="form-group">
                 <label for="room">Room</label>
-                <select id="room" class="form-control" ng-model="requestConf.room">
+                <select id="room" class="form-control" ng-model="requestConf.room" required>
                   <option ng-repeat="r in requestConf.rooms" value="{{r.id}}">{{r.name}}</option>
                 </select>
               </div>
@@ -46,7 +48,7 @@
             <fieldset>
               <div class="form-group">
                 <label for="conferenceTitle">Conference Title</label>
-                <input class="form-control" id="conferenceTitle" type="text" ng-model="requestConf.conferenceTitle">
+                <input class="form-control" id="conferenceTitle" type="text" ng-model="requestConf.conferenceTitle" required>
               </div>
               <div class="form-group">
                 <label for="conferenceDetails">ConferenceDetails</label>
@@ -71,7 +73,9 @@
           </div>
           <div class="col-sm-6">
             <!-- This should return to home.  -->
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            <button type="submit" class="btn btn-primary btn-block" ng-disabled="requestConferenceForm.$invalid && !requestConf.isDisabled()">Submit</button>
+            <!--requestConferenceForm.emailInput.$error.email && -->
+            <!-- !requestConf.isDisabled() -->
           </div>
         </div>
       </form>
