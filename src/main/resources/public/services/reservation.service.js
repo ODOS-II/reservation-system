@@ -68,7 +68,7 @@ angular.
       $http({
         method: 'PUT',
         url: baseUrl + '/rooms/' + roomId + '/reservations/' + reservation.id,
-        data: user
+        data: reservation
       }).then(function (res) {
         cb(res);
       }, function (res) {
