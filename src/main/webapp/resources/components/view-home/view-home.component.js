@@ -25,6 +25,8 @@
       $timeout(tick, $scope.tickInterval);
     }
 
+    $timeout(tick, $scope.tickInterval);
+
     $scope.rooms = [1, 2, 3, 4, 5, 6, 7, 8, 9 , 10];
     $scope.reservations = [{"room":1, "reservation": "1200-1500 Conference Test 1 Smith"}, {"room":1, "reservation": "1600-1615 Conference Test 3 Cross"}, {"room":2, "reservation": "1530-1600 Conference Test 2 Green"}];
   
