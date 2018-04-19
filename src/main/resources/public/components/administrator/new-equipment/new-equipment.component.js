@@ -7,7 +7,7 @@
   component('newEquipment', {
     templateUrl: 'components/administrator/new-equipment/new-equipment.template.html',
     controller: ['equipmentService', '$scope', '$location', NewEquipmentController],
-    controllerAs: 'newUser'
+    controllerAs: 'newEquipment'
   });
 
   function NewEquipmentController(equipmentService, $scope, $location) {
