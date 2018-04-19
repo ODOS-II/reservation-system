@@ -22,9 +22,7 @@
         $scope.error = true;
       }
     });
-
-    $scope.users.push({firstName: 'Travis', lastName: 'O\'Donnell', userType: 0})
-
+    
     $scope.edit = function(i) {
       $location.path('/users/edit/' + $scope.users[i]);
     }
