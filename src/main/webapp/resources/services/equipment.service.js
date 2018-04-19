@@ -5,6 +5,8 @@
     angular.
     module('Conference').
     factory('equipmentService', function($http) {
+
+        var methods = {};
     methods.create = function(equipment, cb) {
         $http({
             method: 'POST',

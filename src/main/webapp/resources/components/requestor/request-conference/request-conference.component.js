@@ -37,53 +37,16 @@
       return false;
     }
 
-    function loadMockRooms() {
-      if (self.buildingPref == "1") {
-        self.rooms = [
-          {
-            "id": 32,
-            "buildingId": 1,
-            "name": "Zen Garden",
-            "occupancy": 5
-          },
-          {
-            "id": 33,
-            "buildingId": 1,
-            "name": "Lunch room",
-            "occupancy": 5
-          }
-        ];
-      } else if (self.buildingPref == "2") {
-        self.rooms = [];
-      }
-      else if (self.buildingPref == "3") {
-        self.rooms = [
-          {
-            "id": 34,
-            "buildingId": 3,
-            "name": "Conference room",
-            "occupancy": 5
-          }
-        ];
-      }
-    }
-
     reservationService.getRooms(function (success) {
-      //console.log(success);
-      if (success == false) { // load mock data if request fails
-        loadMockRooms();
-      } else {
-        self.rooms = success;
+      if(success) {
+        self.rooms = success._embedded.rooms;
       }
     });
 
     self.reloadRooms = () => {
       reservationService.getRooms(function (success) {
-        //console.log(success);
-        if (success == false) { // load mock data if request fails
-          loadMockRooms();
-        } else {
-          self.rooms = success;
+        if(success) {
+          self.rooms = success._embedded.rooms;
         }
       });
     }

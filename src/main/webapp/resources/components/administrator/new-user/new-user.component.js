@@ -6,7 +6,7 @@
   module('newUser').
   component('newUser', {
     templateUrl: 'components/administrator/new-user/new-user.template.html',
-    controller: ['userService', '$scope, $location', NewUserController],
+    controller: ['userService', '$scope', '$location', NewUserController],
     controllerAs: 'newUser'
   });
 
