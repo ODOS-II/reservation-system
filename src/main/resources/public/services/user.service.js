@@ -22,7 +22,7 @@
                 method: 'GET',
                 url: baseUrl + '/users/'
             }).then(function(res) {
-                cb(res, null);
+                cb(res._embedded.users, null);
             }, function(res) {
                 cb(null, res);
             });   
