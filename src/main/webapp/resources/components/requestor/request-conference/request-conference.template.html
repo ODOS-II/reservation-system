@@ -2,7 +2,6 @@
 
 <!--<link rel="stylesheet" href="components/view-home/view-home.style.css">-->
 
-{{requestConf.test}}
 <div class="content">
   <div class="card">
     <div class="card-header">Create</div>
@@ -16,24 +15,29 @@
                 <input class="form-control" id="emailInput" aria-describedby="emailInput" type="email" ng-model="requestConf.email">
               </div>
               <div class="form-group">
-                <label for="dateInput">Date</label>
-                <input id="dateInput" class="form-control" type="date" ng-model="requestConf.date">
+                  <label for="ends">Date</label>
+                  <input id="starts" class="form-control" type="date" ng-model="requestConf.date">
+                </div>
+              <div class="form-group">
+                <label for="ends">Starts</label>
+                <input id="starts" class="form-control" type="time" ng-model="requestConf.starts">
               </div>
               <div class="form-group">
-                <label for="startsInput">Starts</label>
-                <input id="startsInput" class="form-control" step="any" min="0" placeholder="Choose a Start Time" type="number" ng-model="requestConf.starts">
+                <label for="ends">Ends</label>
+                <input id="ends" class="form-control" type="time" ng-model="requestConf.ends">
               </div>
               <div class="form-group">
-                <label for="endsInput">Ends</label>
-                <input id="endsInput" class="form-control" step="any" min="0" placeholder="Choose an End Time" type="number" ng-model="requestConf.ends">
-              </div>
-              <div class="form-group">
-                <label for="buildingPref">Building Preference (optional)</label>
-                <select id="buildingPref" class="form-control" ng-model="requestConf.buildingPref">
-                  <option value="select" selected>--Select--</option>
+                <label for="buildingPref">Building Preference</label>
+                <select id="buildingPref" class="form-control" ng-model="requestConf.buildingPref" ng-change="requestConf.reloadRooms()">
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="room">Room</label>
+                <select id="room" class="form-control" ng-model="requestConf.room">
+                  <option ng-repeat="r in requestConf.rooms" value="{{r.id}}">{{r.name}}</option>
                 </select>
               </div>
             </fieldset>
@@ -61,8 +65,8 @@
         <br />
         <div class="row">
           <div class="col-sm-6">
-            <div class="offset-sm-6 col-sm-6">
-              <a href="#!/home" class="btn btn-secondary btn-block">Cancel</a>
+            <div class="col-sm-6">
+              <a href="#!/home" class="btn btn-light btn-block">Cancel</a>
             </div>
           </div>
           <div class="col-sm-6">
