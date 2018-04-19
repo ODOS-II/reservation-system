@@ -27,19 +27,19 @@ public class ReservationValidator implements Validator {
     Reservation r = (Reservation) target;
 
     if (!reservationService.roomIsAvailable(r)) {
-      //
+      errors.reject("RoomNotAvailable");
     }
 
     if (!reservationService.meetingTimeIsValid(r)) {
-      //
+      errors.reject("MeetingTimeInvalid");
     }
 
     if (!reservationService.meetingLengthIsValid(r)) {
-      //
+      errors.reject("MeetingLengthInvalid");
     }
 
     if (reservationService.userHasAnotherMeeting(r)) {
-      //
+      errors.reject("UserHasAnotherMeeting");
     }
   }
 }

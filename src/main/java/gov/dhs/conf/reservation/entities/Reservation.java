@@ -15,9 +15,9 @@ public class Reservation {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @ManyToOne private User user;
+  @ManyToOne @NotNull private User user;
 
-  @ManyToOne private Room room;
+  @ManyToOne @NotNull private Room room;
 
   private String title;
 
