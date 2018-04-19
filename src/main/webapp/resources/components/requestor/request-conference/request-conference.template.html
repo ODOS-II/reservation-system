@@ -89,7 +89,8 @@
                                     </div>
                                 </div>
                                 <div class="form-text text-danger">
-                                    {{requestConf.getDateValidationMessage(reqConfForm.endHour, reqConfForm.endMin)}}
+                                    {{ requestConf.getDateValidationMessage(reqConfForm.endHour, reqConfForm.endMin)}}
+                                    {{ requestConf.confRequestWindowValidation(requestConf.startHour, requestConf.startMin, requestConf.endHour, requestConf.endMin)}}
                                 </div>
                             </div>
                             <div class="form-group">
