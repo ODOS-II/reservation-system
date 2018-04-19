@@ -6,12 +6,17 @@
     module('viewLogin').
     component('viewLogin', {
       templateUrl: 'components/view-login/view-login.template.html',
-      controller: ['loginService', LoginController],
+      controller: ['$window', 'loginService', LoginController],
       controllerAs: 'login',
     });
 
 
   // Controller - data binds to view-login template
-  function LoginController(loginService) {
+  function LoginController($window, loginService) {
+    var self = this;
+
+    self.submit = () => {
+      $window.location.href = '/#!/home';
+    }
   }
 })();
