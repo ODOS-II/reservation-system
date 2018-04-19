@@ -1,11 +1,15 @@
 package gov.dhs.conf.reservation.service;
 
 import gov.dhs.conf.reservation.entities.Reservation;
+import gov.dhs.conf.reservation.entities.Room;
+import gov.dhs.conf.reservation.entities.User;
 import gov.dhs.conf.reservation.repos.ReservationRepository;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ReservationServiceImpl implements ReservationService {
 
   private static final Duration MIN_MEETING_LENGTH = Duration.ofMinutes(15);
@@ -20,7 +24,18 @@ public class ReservationServiceImpl implements ReservationService {
 
   @Override
   public boolean roomIsAvailable(final Reservation reservation) {
-    throw new UnsupportedOperationException();
+    Room room = reservation.getRoom();
+
+    LocalDateTime startTime = reservation.getStartTime();
+    LocalDateTime endTime = reservation.getEndTime();
+
+    boolean startReservation =
+        reservationRepository.existsByRoomIdAndStartTimeBetween(room.getId(), startTime, endTime);
+
+    boolean endReservation =
+        reservationRepository.existsByRoomIdAndEndTimeBetween(room.getId(), startTime, endTime);
+
+    return !startReservation && !endReservation;
   }
 
   @Override
@@ -34,7 +49,18 @@ public class ReservationServiceImpl implements ReservationService {
 
   @Override
   public boolean userHasAnotherMeeting(final Reservation reservation) {
-    throw new UnsupportedOperationException();
+    User user = reservation.getUser();
+
+    LocalDateTime startTime = reservation.getStartTime();
+    LocalDateTime endTime = reservation.getEndTime();
+
+    boolean startReservation =
+        reservationRepository.existsByUserIdAndStartTimeBetween(user.getId(), startTime, endTime);
+
+    boolean endReservation =
+        reservationRepository.existsByUserIdAndEndTimeBetween(user.getId(), startTime, endTime);
+
+    return startReservation || endReservation;
   }
 
   @Override

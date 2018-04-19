@@ -53,4 +53,7 @@ public class ReservationServiceTests {
     r.setEndTime(start.plusMinutes(14));
     assertThat(service.meetingLengthIsValid(r), is(false));
   }
+
+  @Test
+  public void testUserHasAnotherMeeting() {}
 }

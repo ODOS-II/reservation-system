@@ -30,15 +30,15 @@ public class ReservationValidator implements Validator {
       //
     }
 
+    if (!reservationService.meetingTimeIsValid(r)) {
+      //
+    }
+
     if (!reservationService.meetingLengthIsValid(r)) {
       //
     }
 
-    if (!reservationService.userHasAnotherMeeting(r)) {
-      //
-    }
-
-    if (!reservationService.meetingTimeIsValid(r)) {
+    if (reservationService.userHasAnotherMeeting(r)) {
       //
     }
   }
