@@ -10,7 +10,7 @@
     methods.create = function(equipment, cb) {
         $http({
             method: 'POST',
-            data: user,
+            data: equipment,
             url: baseUrl + '/avEquipment/'
         }).then(function(res) {
             cb(res);
@@ -45,7 +45,7 @@
         $http({
             method: 'PUT',
             url: baseUrl + '/avEquipment/' + equipment.id,
-            data: user
+            data: equipment
         }).then(function(res) {
             cb(res);
         }, function(res) {
