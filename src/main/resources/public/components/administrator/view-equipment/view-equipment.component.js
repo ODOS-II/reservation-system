@@ -10,7 +10,7 @@
     controllerAs: 'viewEquipment'
   });
 
-  function ViewEquipmentController($scope, userService) {
+  function ViewEquipmentController(equipmentService, $scope, location) {
 
     $scope.equipment = [];
     $scope.error = false;

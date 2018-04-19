@@ -10,7 +10,7 @@
     controllerAs: 'viewConferences'
   });
 
-  function ViewConferencesController(userService, $scope, $location) {
+  function ViewConferencesController(conferenceService, $scope, $location) {
 
     $scope.conferences = [];
     $scope.error = false;
