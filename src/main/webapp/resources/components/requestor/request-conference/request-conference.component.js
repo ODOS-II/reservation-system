@@ -14,6 +14,29 @@
   function RequestConferenceController($window, reservationService) {
     var self = this;
 
+    self.isDisabled = () => {
+      //if(self.starts < self.ends) return false;
+      //else return true;
+      
+      /*console.log(self.starts);
+      console.log(self.ends);
+      console.log(self.starts < self.ends);
+      
+      if(self.starts == undefined || self.ends == undefined) {
+        console.log("here");
+        return false;
+      } else {
+        console.log("there");
+        if(Date.parse('01/01/2011' + self.starts) > Date.parse('01/01/2011' + self.ends)) {
+          return true;
+        } else {
+          return false;
+        }
+      }*/
+      
+      return false;
+    }
+
     function loadMockRooms() {
       if (self.buildingPref == "1") {
         self.rooms = [

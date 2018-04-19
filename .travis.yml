@@ -1,8 +1,4 @@
 language: java
-sudo: required
-
-services:
-  - docker
 
 script: mvn clean package
 
@@ -12,8 +8,9 @@ deploy:
   secret_access_key:
     secure: "$SECRETACCESSKEY"
   region: "us-east-1"  
-  app: "reservation-system"
-  env: "reservation-system-dev"
+  app: "odos-reservation-system"
+  env: "odos-reservation-system-ci-env"
   bucket_name: "elasticbeanstalk-us-east-1-539409235947"
+  zip_file: "target/reservation-system-0.0.1-SNAPSHOT.jar"
   on:
     branch: develop
