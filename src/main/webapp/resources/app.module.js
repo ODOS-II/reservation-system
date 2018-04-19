@@ -5,6 +5,7 @@
   // modues used are injected here
   angular.module('Conference', [
     'ngRoute',
+
     'viewHome',
     'requestConference',
     
