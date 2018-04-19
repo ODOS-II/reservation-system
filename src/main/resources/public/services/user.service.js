@@ -22,6 +22,7 @@
                 method: 'GET',
                 url: baseUrl + '/users/'
             }).then(function(res) {
+                console.log(res);
                 cb(res._embedded.users, null);
             }, function(res) {
                 cb(null, res);
