@@ -16,13 +16,14 @@
     $scope.error = false;
 
     userService.readAll(function(res, error) {
+      console.log(res);
       if(res) {
         $scope.users = res.body;
       } else if(error) {
         $scope.error = true;
       }
     });
-    
+
     $scope.edit = function(i) {
       $location.path('/users/edit/' + $scope.users[i]);
     }

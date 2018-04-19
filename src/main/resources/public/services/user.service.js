@@ -23,7 +23,7 @@
                 url: baseUrl + '/users/'
             }).then(function(res) {
                 console.log(res);
-                cb(res._embedded.users, null);
+                cb(res, null);
             }, function(res) {
                 cb(null, res);
             });   
