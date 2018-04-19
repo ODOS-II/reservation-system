@@ -10,7 +10,7 @@
     controllerAs: 'newUser'
   });
 
-  function NewEquipmentController($scope, equipmentService) {
+  function NewEquipmentController(equipmentService, $scope, $location) {
 
     $scope.create = function(user) {
       equipmentService.create(user, function(response, error) {
