@@ -10,7 +10,7 @@
     controllerAs: 'newUser'
   });
 
-  function NewUserController($scope, userService) {
+  function NewUserController(userService, $scope, $location) {
 
     $scope.user = {};
 

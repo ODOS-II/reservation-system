@@ -6,20 +6,20 @@
   module('editEquipment').
   component('editEquipment', {
     templateUrl: 'components/administrator/edit-equipment/edit-equipment.template.html',
-    controller: ['equipmentService', '$scope, $location', '$routeParam', EditEquipmentController],
+    controller: ['equipmentService', '$scope', '$location', '$routeParams', EditEquipmentController],
     controllerAs: 'editEquipment'
   });
 
-  function EditEquipmentController(equipmentService, $scope, $location, $routeParam) {
+  function EditEquipmentController(equipmentService, $scope, $location, $routeParams) {
 
     $scope.equipment = {};
-    if($routeParam.id) {
-      equipmentService.read($routeParam.id , function(response, error) {
+    if($routeParams.id) {
+      equipmentService.read($routeParams.id , function(response, error) {
       if(response) {
-        $scope.equipment = response.body;
+        $scope.equipment = response;
       } else if(error) {
         alert('Error getting user! ');
-        $location.path('/users/');
+        $location.path('/equipment/');
       }
     }); 
     } else {
@@ -32,7 +32,7 @@
         if(response) {
           $location.path('/equipment/');
         } else if(error) {
-          alert(error.body);
+          alert(error);
         }
       });
     }
