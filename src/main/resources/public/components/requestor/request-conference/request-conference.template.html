@@ -15,13 +15,13 @@
                 <input class="form-control" id="emailInput" name="emailInput" aria-describedby="emailInput" type="email" ng-model="requestConf.email"
                   required>
               </div>
-              <small class="error text-danger" ng-show="requestConferenceForm.emailInput.$error.email">Not valid email!</small>
+              <small class="error text-danger" ng-show="requestConferenceForm.emailInput.$error.email">Not valid email</small>
               <div class="form-group">
-                <label for="ends">Date</label>
-                <input id="starts" class="form-control" type="date" ng-model="requestConf.date" required>
+                <label for="date">Date</label>
+                <input id="date" class="form-control" type="date" ng-model="requestConf.date" required>
               </div>
               <div class="form-group">
-                <label for="ends">Starts</label>
+                <label for="starts">Starts</label>
                 <input id="starts" class="form-control" type="time" ng-model="requestConf.starts" required>
               </div>
               <div class="form-group">

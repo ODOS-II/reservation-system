@@ -10,7 +10,7 @@
   function angularConfig($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
     // Route for template render
-    $routeProvider.when('/', {
+    $routeProvider.when('/home', {
       template: '<view-home></view-home>'
     })
     .otherwise({ redirectTo: '/' });
