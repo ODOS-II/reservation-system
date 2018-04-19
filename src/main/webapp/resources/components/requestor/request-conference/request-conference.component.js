@@ -12,13 +12,16 @@
     function RequestConferenceController($window, requestConferenceService, AllowedMinBookingRequestTimeHours) {
         var requestConf = this;
 
+
         requestConf.submit = () => {
+            var starts = moment(requestConf.date).set(requestConf.startHour, 'h').set(requestConf.startMin, 'minutes');
+            var ends = moment(requestConf.date).set(requestConf.endHour, 'h').set(requestConf.endMin, 'minutes');
             // set post data
             var postData = {
                 email: this.email,
                 date: this.date,
-                starts: this.starts,
-                ends: this.ends,
+                starts: starts,
+                ends: ends,
                 buildingPref: this.buildingPref,
                 conferenceTitle: this.conferenceTitle,
                 conferenceDetails: this.conferenceDetails,
@@ -56,6 +59,7 @@
             requestConf.endMin = requestConf.startMin =  0;
             requestConf.startAmPm = starts.format('A');
             requestConf.endAmPM = ends.format('A');
+            requestConf.date = new Date();
         };
         requestConf.init();
     }
