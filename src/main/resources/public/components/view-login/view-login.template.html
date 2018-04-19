@@ -3,14 +3,16 @@
 
 <div class="content">
   <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
+
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
 
 
       <div class="content">
         <div class="card">
           <div class="card-header">Login</div>
           <div class="card-body">
-            <form class="form-horizontal">
+            <form ng-submit="login.submit()">
               <div class="form-group">
                 <div class="col-sm-12">
                   <input class="form-control" name="username" id="username" placeholder="username" type="text">
@@ -21,7 +23,11 @@
                   <input class="form-control" name="password" id="password" placeholder="password" type="password">
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary float-right" name="login" id="login" value="login">Log In</button>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <button type="submit" class="btn btn-primary float-right" name="login" id="login" value="login">Log In</button>
+                </div>
+              </div>
 
               <label class="text-danger"></label>
             </form>
@@ -33,6 +39,6 @@
 
 
     </div>
-
+    <div class="col-sm-3">
+    </div>
   </div>
-</div>
