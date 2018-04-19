@@ -19,7 +19,7 @@
         if(response) {
           $location.path('/users/');
         } else if(error) {
-          alert(error.body);
+          alert();
         }
       });
     }

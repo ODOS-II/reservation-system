@@ -6,6 +6,8 @@
         var methods = {};
 
         methods.create = function(user, cb) {
+            console.log(user);
+            console.log('create');
             $http({
                 method: 'POST',
                 data: user,
@@ -23,7 +25,7 @@
                 url: baseUrl + '/users/'
             }).then(function(res) {
                 console.log(res);
-                cb(res, null);
+                cb(res.data._embedded.users, null);
             }, function(res) {
                 cb(null, res);
             });   

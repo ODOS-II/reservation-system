@@ -6,7 +6,7 @@
   module('viewEquipment').
   component('viewEquipment', {
     templateUrl: 'components/administrator/view-equipment/view-equipment.template.html',
-    controller: ['equipmentService', '$scope, $location', ViewEquipmentController],
+    controller: ['equipmentService', '$scope', '$location', ViewEquipmentController],
     controllerAs: 'viewEquipment'
   });
 
