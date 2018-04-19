@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Reservation {
@@ -14,15 +15,15 @@ public class Reservation {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private long id;
 
-  @ManyToOne private User user;
+  @ManyToOne @NotNull private User user;
 
-  @ManyToOne private Room room;
+  @ManyToOne @NotNull private Room room;
 
   private String title;
 
-  private LocalDateTime startTime;
+  @NotNull private LocalDateTime startTime;
 
-  private LocalDateTime endTime;
+  @NotNull private LocalDateTime endTime;
 
   private Room.Configuration roomConfiguration;
 

@@ -1,0 +1,45 @@
+<!-- Controller is referenced to template via new-user-controller  -->
+
+<div class="content">
+
+  <div class='card'>
+    <div class='card-header'>Create User</div>
+    <div class='card-body'>
+      <form ng-submit="create()">
+        <div class='form-group'>
+          <label for='firstName'>First Name</label>
+          <input type='text' class='form-control' id='firstName' name='firstName' required ng-model='user.firstName'>
+        </div>
+        <div class='form-group'>
+          <label for='lastName'>Last Name</label>
+          <input type='text' class='form-control' id='lastName' name='lastName' required ng-model='user.lastName'>
+        </div>
+        <hr>
+        <div class='form-group'>
+          <label for='username'>Username</label>
+          <input type='text' class='form-control' id='username' name='username' required ng-model='user.username'>
+        </div>
+        <div class='form-group'>
+          <label for='password'>Password</label>
+          <input type='password' class='form-control' id='password' aria-describedby='passwordHelp' name='password' required ng-model='user.password'>
+          <small id='passwordHelp' class='form-text text-muted'>Password should be at least 8 characters long consisting of lowercase, uppercase, numbers, and special characters</small>
+        </div>
+        <div class='form-group'>
+        <label for='userType'>User Type</label>
+        <select class='form-control' id='userType' name='userType' required ng-model='user.userType'>
+          <option value='0'>Admin</option>
+          <option value='1'>Employee</option>
+          <option value='2'>Reservation Manager</option>
+        </select>
+        </div>
+      
+        <button type='button' class='btn btn-info' ng-click='cancel()'>Cancel</button>
+        <button type='submit' class='btn btn-success'>Submit</button>
+      </form>
+      
+    </div>
+  </div>
+
+<div class="content">
+
+</div>
