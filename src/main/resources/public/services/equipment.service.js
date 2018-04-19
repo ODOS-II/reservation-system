@@ -35,7 +35,7 @@
             method: 'GET',
             url: baseUrl + '/avEquipment/'
         }).then(function(res) {
-            cb(res);
+            cb(res.data._embedded.avEquipment);
         }, function(res) {
             cb(false);
         });
