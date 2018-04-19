@@ -28,7 +28,7 @@
                         </div>
                         <input ng-model="requestConf.startHour"
                                required
-                               ng-class="{'invalid': reqConfForm.startHour.$invalid}"
+                               ng-class="{'invalid': requestConferenceForm.startHour.$invalid}"
                                type="number" min="1" max="12" class="form-control"
                                aria-label="Hour"
                                name="startHour"
@@ -38,7 +38,7 @@
                         </div>
                         <input ng-model="requestConf.startMin"
                                required
-                               ng-class="{'invalid': reqConfForm.startMin.$invalid}"
+                               ng-class="{'invalid': requestConferenceForm.startMin.$invalid}"
                                name="startMin"
                                type="number" min="0" max="59" class="form-control"
                                aria-label="Minutes"
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="form-text text-danger">
-                        {{requestConf.getDateValidationMessage(reqConfForm.startHour, reqConfForm.startMin)}}
+                        {{requestConf.getDateValidationMessage(requestConferenceForm.startHour, requestConferenceForm.startMin)}}
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,7 +64,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="ends-hour">Hour</span>
                         </div>
-                        <input ng-model="requestConf.endHour" required ng-class="{'invalid': reqConfForm.endHour.$invalid}"
+                        <input ng-model="requestConf.endHour" required ng-class="{'invalid': requestConferenceForm.endHour.$invalid}"
                                name="endHour"
                                type="number" ng-min="requestConf.startHour" max="12" class="form-control"
                                aria-label="Hour"
@@ -72,7 +72,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="ends-min">Minutes</span>
                         </div>
-                        <input ng-model="requestConf.endMin" required ng-class="{'invalid': reqConfForm.endMin.$invalid}"
+                        <input ng-model="requestConf.endMin" required ng-class="{'invalid': requestConferenceForm.endMin.$invalid}"
                                name="endMin"
                                type="number" min="0" max="59" class="form-control"
                                aria-label="Minutes"
@@ -89,8 +89,9 @@
                         </div>
                     </div>
                     <div class="form-text text-danger">
-                        {{ requestConf.getDateValidationMessage(reqConfForm.endHour, reqConfForm.endMin)}}
-                        {{ requestConf.confRequestWindowValidation(requestConf.startHour, requestConf.startMin, requestConf.endHour, requestConf.endMin)}}
+                        {{ requestConf.getDateValidationMessage(requestConferenceForm.endHour, requestConferenceForm.endMin)}}
+                        {{ requestConf.confRequestWindowValidation(requestConf.startHour, requestConf.startMin, requestConf.startAmPm ,
+                        requestConf.endHour, requestConf.endMin, requestConf.endAmPm)}}
                     </div>
                 </div>
               <div class="form-group">
@@ -125,144 +126,24 @@
                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
               </div>
             </fieldset>
-    <div class="card">
-        <div class="card-header">Create</div>
-        <div class="card-body">
-            <form name="reqConfForm" ng-submit="requestConf.submit()">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <fieldset>
-                            <div class="form-group">
-                                <label for="emailInput">Email</label>
-                                <input class="form-control" id="emailInput" aria-describedby="emailInput" type="email"
-                                       ng-model="requestConf.email">
-                            </div>
-                            <div class="form-group">
-                                <label for="dateInput">Date</label>
-                                <input id="dateInput" class="form-control" type="date" ng-model="requestConf.date">
-                            </div>
-                            <div class="form-group" >
-                                <label for="startsInput">Starts</label>
-                                <div class="input-group mb-3" id="startsInput">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="starts-hour">Hour</span>
-                                    </div>
-                                    <input ng-model="requestConf.startHour"
-                                           required
-                                           ng-class="{'invalid': reqConfForm.startHour.$invalid}"
-                                           type="number" min="1" max="12" class="form-control"
-                                           aria-label="Hour"
-                                           name="startHour"
-                                           aria-describedby="starts-hour">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="starts-min">Minutes</span>
-                                    </div>
-                                    <input ng-model="requestConf.startMin"
-                                           required
-                                           ng-class="{'invalid': reqConfForm.startMin.$invalid}"
-                                           name="startMin"
-                                           type="number" min="0" max="59" class="form-control"
-                                           aria-label="Minutes"
-                                           aria-describedby="starts-min">
-                                    <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-secondary active">
-                                            <input type="radio" name="options" id="start-option1" autocomplete="off"
-                                                   ng-checked="requestConf.startAmPm == 'PM'">AM
-                                        </label>
-                                        <label class="btn btn-secondary">
-                                            <input type="radio" name="options" id="start-option2" autocomplete="off"
-                                                   ng-checked="requestConf.startAmPm == 'AM'">PM
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-text text-danger">
-                                    {{requestConf.getDateValidationMessage(reqConfForm.startHour, reqConfForm.startMin)}}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="startsInput">Ends</label>
-                                <div class="input-group mb-3" id="endsInput">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="ends-hour">Hour</span>
-                                    </div>
-                                    <input ng-model="requestConf.endHour" required ng-class="{'invalid': reqConfForm.endHour.$invalid}"
-                                           name="endHour"
-                                           type="number" ng-min="requestConf.startHour" max="12" class="form-control"
-                                           aria-label="Hour"
-                                           aria-describedby="ends-hour">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text" id="ends-min">Minutes</span>
-                                    </div>
-                                    <input ng-model="requestConf.endMin" required ng-class="{'invalid': reqConfForm.endMin.$invalid}"
-                                           name="endMin"
-                                           type="number" min="0" max="59" class="form-control"
-                                           aria-label="Minutes"
-                                           aria-describedby="ends-min">
-                                    <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
-                                        <label class="btn btn-secondary active">
-                                            <input type="radio" name="options" id="end-option1" autocomplete="off"
-                                                   ng-checked="requestConf.endAmPm == 'PM'">AM
-                                        </label>
-                                        <label class="btn btn-secondary">
-                                            <input type="radio" name="options" id="end-option2" autocomplete="off"
-                                                   ng-checked="requestConf.endAmPm == 'AM'">PM
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-text text-danger">
-                                    {{ requestConf.getDateValidationMessage(reqConfForm.endHour, reqConfForm.endMin)}}
-                                    {{ requestConf.confRequestWindowValidation(requestConf.startHour, requestConf.startMin, requestConf.endHour, requestConf.endMin)}}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="buildingPref">Building Preference (optional)</label>
-                                <select id="buildingPref" class="form-control" ng-model="requestConf.buildingPref">
-                                    <option value="select" selected>--Select--</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-                        </fieldset>
-                    </div>
-                    <div class="col-sm-6">
-                        <fieldset>
-                            <div class="form-group">
-                                <label for="conferenceTitle">Conference Title</label>
-                                <input class="form-control" id="conferenceTitle" type="text"
-                                       ng-model="requestConf.conferenceTitle">
-                            </div>
-                            <div class="form-group">
-                                <label for="conferenceDetails">ConferenceDetails</label>
-                                <textarea id="conferenceDetails" class="form-control" id="exampleTextarea" rows="3"
-                                          ng-model="requestConf.conferenceDetails"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label" for="invitesInput">Invites</label>
-                                <input id="invitesInput" class="form-control" type="text"
-                                       ng-model="requestConf.invites">
-                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                            </div>
-                        </fieldset>
-
-                    </div>
-                </div>
-                <br/>
-                <br/>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="col-sm-6">
-                            <a href="#!/home" class="btn btn-light btn-block">Cancel</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <!-- This should return to home.  -->
-                        <button type="submit" class="btn btn-primary btn-block" ng-disabled="requestConferenceForm.$invalid && !requestConf.isDisabled()">Submit</button>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="col-sm-6">
+              <a href="#!/home" class="btn btn-light btn-block">Cancel</a>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- This should return to home.  -->
+            <button type="submit" class="btn btn-primary btn-block" ng-disabled="requestConferenceForm.$invalid && !requestConf.isDisabled()">Submit</button>
             <!--requestConferenceForm.emailInput.$error.email && -->
             <!-- !requestConf.isDisabled() -->
-                    </div>
-                </div>
-            </form>
+          </div>
         </div>
+      </form>
     </div>
+  </div>
 </div>
