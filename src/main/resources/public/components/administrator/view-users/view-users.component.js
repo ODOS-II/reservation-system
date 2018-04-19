@@ -16,7 +16,6 @@
     $scope.error = false;
 
     userService.readAll(function(res, error) {
-      console.log(res);
       if(res) {
         $scope.users = res.body;
       } else if(error) {
@@ -25,11 +24,13 @@
     });
 
     $scope.edit = function(i) {
-      $location.path('/users/edit/' + $scope.users[i]);
+    	var index = $scope.users[i]._links.self.href.lastIndexOf('/');
+    	var id = $scope.users[i]._links.self.href.substring(index +1);
+      $location.path('/users/edit/' + id);
     }
 
     $scope.delete = function(i) {
-      userService.delete(id, function(response, error) {
+      userService.delete($scope.users[i]._links.self.href, function(response, error) {
         if(response) {
            $scope.users.splice(i, 1);
         } else if(error) {
