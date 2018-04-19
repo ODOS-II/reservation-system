@@ -17,29 +17,28 @@
 <div class="content">
   <div class="row">
     <div class="col-sm-8">
-      <h1>10:15</h1>
-      <p>Friday April 20, 2018</p>
+      <h1>{{date | date: 'hh:mm'}}</h1>
+      <p>{{date | date: 'EEEE MMM dd, yyyy'}}</p>
 
+      <button class="btn btn-lg btn-primary" ng-click="home.newConference()">New Conference</button>
     </div>
     <div class="col-sm-4">
 
-      <div class="card mb-3" style="max-width: 20rem;">
+      <label for='roomNumber'>Room</label>
+      <select id='roomNumber' ng-change='getReservations()' ng-model='selectedRoom'>
+        <option ng-repeat="(key, room) in rooms" id="{{room}}">{{room}}</option>
+      </select>
+
+
+      <div class="card mb-3" style="max-width: 20rem;" ng-repeat='reservation in selectedReservations'>
         <div class="card-body">
-          <h4 class="card-title">10:00 - 11:00 AM</h4>
-          <p class="card-text">USCSI ODOS II - Coding Challenge Kick Off Meeting</p>
+          <p class="card-text">{{reservation.reservation}}</p>
         </div>
       </div>
 
-      <div class="card mb-3" style="max-width: 20rem;">
-        <div class="card-body">
-          <h4 class="card-title">11:30 - 12:00 AM</h4>
-          <p class="card-text">Another Event - Event description...</p>
-        </div>
-      </div>
 
 
     </div>
   </div>
 </div>
 
-<button class="btn btn-lg btn-primary" ng-click="home.newConference()">New Conference</button>
