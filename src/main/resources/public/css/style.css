@@ -1,0 +1,9 @@
+/* bump down content */
+.content {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.text-danger {
+  color: #a94442;
+}
