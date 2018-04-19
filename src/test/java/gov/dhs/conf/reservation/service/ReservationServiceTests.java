@@ -28,9 +28,29 @@ public class ReservationServiceTests {
     r.setStartTime(LocalDateTime.now().withMinute(1));
     r.setEndTime(LocalDateTime.now().withMinute(30));
     assertThat(service.meetingTimeIsValid(r), is(false));
+  }
 
-    r.setStartTime(LocalDateTime.now().withMinute(15));
-    r.setEndTime(LocalDateTime.now().withMinute(15));
-    assertThat(service.meetingTimeIsValid(r), is(false));
+  @Test
+  public void testMeetingLengthIsValid() {
+    ReservationService service = new ReservationServiceImpl(null);
+    Reservation r = new Reservation();
+
+    LocalDateTime start = LocalDateTime.now().withMinute(0);
+    r.setStartTime(start);
+
+    r.setEndTime(start.plusHours(3));
+    assertThat(service.meetingLengthIsValid(r), is(true));
+
+    r.setEndTime(start.plusMinutes(15));
+    assertThat(service.meetingLengthIsValid(r), is(true));
+
+    r.setEndTime(start.plusHours(3).minusMinutes(1));
+    assertThat(service.meetingLengthIsValid(r), is(true));
+
+    r.setEndTime(start.plusHours(3).plusMinutes(1));
+    assertThat(service.meetingLengthIsValid(r), is(false));
+
+    r.setEndTime(start.plusMinutes(14));
+    assertThat(service.meetingLengthIsValid(r), is(false));
   }
 }
