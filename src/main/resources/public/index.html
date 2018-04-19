@@ -22,11 +22,14 @@
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.7/angular-animate.min.js" integrity="sha256-VulA4dmD9HruM3uS9L+6Y93ku8d6mAf/ibqslissaKQ=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js" integrity="sha256-L3S3EDEk31HcLA5C6T2ovHvOcD80+fgqaCDt2BAi92o=" crossorigin="anonymous"></script>
   <!-- Application Level Angular -->
 	<script defer src="app.module.js"></script>
 	<script defer src="app.controller.js"></script>
-  <script defer src="app.config.js"></script>
-  <!-- View-Login Content -->
+    <script defer src="app.constants.js"></script>
+    <script defer src="app.config.js"></script>
+   <!-- View-Login Content -->
   <link rel="stylesheet" href="components/view-login/view-login.style.css">
 	<script defer src="components/view-login/view-login.module.js"></script>
 	<script defer src="components/view-login/view-login.component.js"></script>
@@ -127,7 +130,7 @@
             <a class="dropdown-item" href='#!/conferences/request'>Create</a>
           </div>
         </li>
-
+      </ul>
     </div>
   </nav>
 
