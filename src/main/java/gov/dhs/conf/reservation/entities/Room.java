@@ -22,6 +22,14 @@ public class Room {
   @RestResource(rel = "avEquipment")
   private List<AVEquipment> avEquipment;
 
+  public long getId() {
+    return id;
+  }
+
+  public void setId(final long id) {
+    this.id = id;
+  }
+
   public int getBuildingId() {
     return buildingId;
   }
