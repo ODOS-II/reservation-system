@@ -13,6 +13,6 @@ deploy:
   app: "odos-reservation-system"
   env: "odos-reservation-system-ci-env"
   bucket_name: "elasticbeanstalk-us-east-1-539409235947"
-  zip_file: "${TRAVIS_BUILD_DIR}/reservation-system/reservation-system-0.0.1-SNAPSHOT.jar"
+  zip_file: "${TRAVIS_BUILD_DIR}/target/reservation-system-0.0.1-SNAPSHOT.jar"
   on:
     branch: develop
