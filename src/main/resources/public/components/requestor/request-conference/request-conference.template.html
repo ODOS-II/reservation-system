@@ -93,8 +93,8 @@
               </div>
               <div class="form-group">
                 <label for="room">Room</label>
-                <select id="room" class="form-control" ng-click="requestConf.reloadRooms()" ng-model="requestConf.room" required>
-                  <option ng-repeat="r in requestConf.rooms" value="{{r.id}}">{{r.name}}</option>
+                <select id="room" class="form-control" ng-model="requestConf.room">
+                  <option ng-repeat="r in requestConf.rooms" value="{{r._links.self.href}}">{{r.name}}</option>
                 </select>
               </div>
             </fieldset>
@@ -110,9 +110,13 @@
                 <textarea id="conferenceDetails" class="form-control" id="exampleTextarea" rows="3" ng-model="requestConf.conferenceDetails"></textarea>
               </div>
               <div class="form-group">
-                <label class="control-label" for="invitesInput">Invites</label>
-                <input id="invitesInput" class="form-control" type="text" ng-model="requestConf.invites">
-                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+             
+                <label class="control-label" for="user">User</label>
+                
+                <select id='user' name='user' ng-model='requestConf.user'>
+                  <option ng-repeat="r in requestConf.users" value="{{r._links.self.href}}">{{r.firstName}} {{r.lastName}}</option>
+
+                </select>
               </div>
             </fieldset>
           </div>
@@ -127,7 +131,7 @@
           </div>
           <div class="col-sm-6">
             <!-- This should return to home.  -->
-            <button type="submit" class="btn btn-primary btn-block" ng-disabled="requestConferenceForm.$invalid && !requestConf.isDisabled()">Submit</button>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
             <!--requestConferenceForm.emailInput.$error.email && -->
             <!-- !requestConf.isDisabled() -->
           </div>

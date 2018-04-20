@@ -8,9 +8,12 @@ angular.
     var methods = {};
 
     methods.create = function (roomId, postData, cb) {
+    	var index = roomId.lastIndexOf('/');
+    	var id = roomId.substring(index +1);
+    	postData = JSON.stringify(postData);
       $http({
         method: 'POST',
-        url: '/reservations/',
+        url: '/reservations',
         data: postData
       }).then(function (res) {
         cb(res);

@@ -4,45 +4,33 @@
     // Register 'requestConference' component, along with its associated controller and template
     angular.module('requestConference').component('requestConference', {
         templateUrl: 'components/requestor/request-conference/request-conference.template.html',
-        controller: ['$window', 'reservationService', 'AllowedMinBookingRequestTimeHours',RequestConferenceController],
+        controller: ['$window', 'reservationService', 'userService', 'AllowedMinBookingRequestTimeHours',RequestConferenceController],
         controllerAs: 'requestConf',
     });
 
     // Controller - data binds to view-home template
-    function RequestConferenceController($window, reservationService, AllowedMinBookingRequestTimeHours) {
+    function RequestConferenceController($window, reservationService, userService, AllowedMinBookingRequestTimeHours) {
         var self = this;
-
-        self.isDisabled = () => {
-            //if(self.starts < self.ends) return false;
-            //else return true;
-
-            /*console.log(self.starts);
-            console.log(self.ends);
-            console.log(self.starts < self.ends);
-
-            if(self.starts == undefined || self.ends == undefined) {
-              console.log("here");
-              return false;
-            } else {
-              console.log("there");
-              if(Date.parse('01/01/2011' + self.starts) > Date.parse('01/01/2011' + self.ends)) {
-                return true;
-              } else {
-                return false;
-              }
-            }*/
-
-            return false;
+       
+        self.findUsers = function() {
+	        	userService.readAll(function(res, err) {
+	        	if(res) {
+	        		self.users = res;
+	        	}
+	        });
         }
+        
+        self.findUsers();
 
         self.findRooms = function() {
             reservationService.getRooms(function (success) {
                 if(success) {
                     var rooms = success.data._embedded.rooms;
-                    var roomIds = _.map(rooms ,'id');
-                    reservationService.getReservationsForRooms(roomIds).then( function(allReservations) {
-                        self.rooms = self.filterOnlyAvailableRooms(rooms, allReservations);
-                    });
+                    self.rooms = rooms;
+//                    var roomIds = _.map(rooms ,'id');
+//                    reservationService.getReservationsForRooms(roomIds).then( function(allReservations) {
+//                        self.rooms = self.filterOnlyAvailableRooms(rooms, allReservations);
+//                    });
 
                 }
             });
@@ -52,7 +40,10 @@
 
         self.filterOnlyAvailableRooms = (rooms, allReservations) => {
         return rooms.filter(function(room) {
-            var reservationsMap = _.find(allReservations, {roomId: room.id});
+        	var index = room._links.self.href.lastIndexOf('/');
+        	var id = room._links.self.href.substring(index +1);
+            var reservationsMap = _.find(allReservations, {roomId: id});
+            console.log(reservationMap);
             if (!reservationsMap || !reservationsMap.reservations) return true;
             var found =  _.find(reservationsMap.reservations, function(reservation) {
                 var alreadyReserved =  self.alreadyReservedForCurrentSlot(reservation);
@@ -88,7 +79,7 @@
 
             // set post data
             var postData = {
-                user: 'testuser',
+                user: self.user,
                 email: self.email,
                 date: self.date,
                 starts: starts,
