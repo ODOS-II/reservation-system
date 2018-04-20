@@ -5,7 +5,7 @@
   <div class='card'>
     <div class='card-header'>Create User</div>
     <div class='card-body'>
-      <form ng-submit="create()">
+      <form>
         <div class='form-group'>
           <label for='firstName'>First Name</label>
           <input type='text' class='form-control' id='firstName' name='firstName' required ng-model='user.firstName'>
@@ -26,7 +26,7 @@
         </div>
         <div class='form-group'>
         <label for='userType'>User Type</label>
-        <select class='form-control' id='userType' name='userType' required ng-model='user.userType'>
+        <select class='form-control' id='userType' name='userType'  ng-model='user.userType'>
           <option value='0'>Admin</option>
           <option value='1'>Employee</option>
           <option value='2'>Reservation Manager</option>
@@ -34,7 +34,7 @@
         </div>
       
         <button type='button' class='btn btn-info' ng-click='cancel()'>Cancel</button>
-        <button type='submit' class='btn btn-success'>Submit</button>
+        <button type='button' class='btn btn-success' ng-click='create(user)'>Submit</button>
       </form>
       
     </div>

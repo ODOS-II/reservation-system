@@ -24,7 +24,7 @@
             method: 'GET',
             url: baseUrl + '/avEquipment/' + id
         }).then(function(res) {
-            cb(res);
+            cb(res.data);
         }, function(res) {
             cb(false);
         })
@@ -42,9 +42,12 @@
     }
 
     methods.update = function(equipment, cb) {
+    	
+    	var index = equipment._links.self.href.lastIndexOf('/');
+    	var id = equipment._links.self.href.substring(index +1);
         $http({
             method: 'PUT',
-            url: baseUrl + '/avEquipment/' + equipment.id,
+            url: baseUrl + '/avEquipment/' + id,
             data: equipment
         }).then(function(res) {
             cb(res);
@@ -53,10 +56,10 @@
         })
     }
 
-    methods.delete = function(id, cb) {
+    methods.delete = function(href, cb) {
         $http({
             method: 'DELETE',
-            url: baseUrl + '/rooms/' + id
+            url: href
         }).then(function(res) {
             cb(true);
         }, function(res) {
