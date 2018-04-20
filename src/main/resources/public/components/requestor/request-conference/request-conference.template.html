@@ -61,7 +61,7 @@
                         </div>
                         <input ng-model="requestConf.endHour" required ng-class="{'invalid': requestConferenceForm.endHour.$invalid}"
                                name="endHour"
-                               type="number" ng-min="requestConf.startHour" max="12" class="form-control"
+                               type="number" ng-min="requestConf.startHour" min="1" max="12" class="form-control"
                                aria-label="Hour"
                                aria-describedby="ends-hour">
                         <div class="input-group-prepend">
