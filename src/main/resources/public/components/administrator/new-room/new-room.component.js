@@ -15,7 +15,6 @@
     $scope.room = {occupancy: "10"};
 
     $scope.create = function() {
-    	$scope.room.avEquipment[0] = $scope.room.avEquipment[0]._links.self.href;
       roomService.create($scope.room, function(response, error) {
         if(response) {
           $location.path('/rooms/');

@@ -68,7 +68,7 @@
                             <span class="input-group-text" id="ends-min">Minutes</span>
                         </div>
                         <input ng-model="requestConf.endMin" required ng-class="{'invalid': requestConferenceForm.endMin.$invalid}"
-                               ng-pattern="/^(0|15|30|60)$/"       
+                               ng-pattern="/^(0|15|30|45|60)$/"       
                                name="endMin"
                                id="endMin"
                                type="number" min="0" max="59" class="form-control"

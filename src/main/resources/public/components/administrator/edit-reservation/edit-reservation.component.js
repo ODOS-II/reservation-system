@@ -125,7 +125,7 @@
 					$scope.reservation.date = new Date($scope.reservation.endTime);
 				} else if(error) {
 					alert('Error getting user! ');
-					$location.path('/reservation/');
+					$location.path('/reservations/');
 				}
 			}); 
 		} else {
@@ -136,7 +136,7 @@
 		$scope.update = function(user) {
 			reservationService.update(id, user, function(response) {
 				if(response) {
-					$location.path('/reservation/');
+					$location.path('/reservations/');
 				} else {
 					alert(error);
 				}
@@ -144,7 +144,7 @@
 		}
 
 		$scope.cancel = function() {
-			$location.path('/reservation/');
+			$location.path('/reservations/');
 		}
 
 	}

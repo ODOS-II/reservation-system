@@ -101,7 +101,7 @@
         self.getDateValidationMessage = (hour, min) => {
             if (hour && hour.$invalid && min &&  min.$invalid) return 'Please enter valid hour and minutes.';
             if (hour && hour.$invalid) return 'Please enter valid hour.';
-            if (min && min.$invalid) return 'Please enter valid minutes.';
+            if (min && min.$invalid) return 'Minutes should be 00, 15, 30, 45, or 60';
             return '';
         };
 
