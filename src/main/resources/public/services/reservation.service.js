@@ -10,7 +10,7 @@ angular.
     methods.create = function (roomId, postData, cb) {
       $http({
         method: 'POST',
-        url: baseUrl + '/rooms/' + roomId + '/reservations/',
+        url: '/reservations/',
         data: postData
       }).then(function (res) {
         cb(res);
