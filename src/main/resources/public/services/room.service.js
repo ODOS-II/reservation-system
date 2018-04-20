@@ -58,7 +58,7 @@
     methods.delete = function(id, cb) {
         $http({
             method: 'DELETE',
-            url: baseUrl + '/rooms/' + id
+            url: id
         }).then(function(res) {
             cb(true);
         }, function(res) {

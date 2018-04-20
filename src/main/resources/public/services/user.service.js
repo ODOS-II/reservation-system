@@ -30,8 +30,6 @@
         };
 
         methods.read = function(id, cb) {
-        	var index = equipment._links.self.href.lastIndexOf('/');
-        	var id = equipment._links.self.href.substring(index +1);
             $http({
                 method: 'GET',
                 url: baseUrl + '/users/' + id
@@ -47,7 +45,7 @@
         	var id = user._links.self.href.substring(index +1);
             $http({
                 method: 'PUT',
-                url: baseUrl + '/users/' + user.id,
+                url: baseUrl + '/users/' + id,
                 data: user
             }).then(function(res) {
                 cb(res, null);
@@ -59,7 +57,7 @@
         methods.delete = function(href, cb) {
             $http({
                 method: 'DELETE',
-                url: baseUrl + '/users/' + href
+                url: href
             }).then(function(res) {
                 cb(res, null);
             }, function(res) {

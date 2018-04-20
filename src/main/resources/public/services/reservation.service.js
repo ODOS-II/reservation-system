@@ -3,14 +3,14 @@ var baseUrl = '';
 'use strict';
 angular.
   module('Conference').
-  factory('reservationService', function ($http) {
+  factory('reservationService', function ($http, $q) {
 
     var methods = {};
 
     methods.create = function (roomId, postData, cb) {
       $http({
         method: 'POST',
-        url: baseUrl + '/rooms/' + roomId + '/reservations/',
+        url: '/reservations/',
         data: postData
       }).then(function (res) {
         cb(res);
@@ -40,6 +40,23 @@ angular.
       }, function (res) {
         cb(false);
       })
+    }
+
+    methods.getReservationsForRooms = function (roomIdArray) {
+        var promises = roomIdArray.map(function(roomId) {
+            return methods.getReservationsForRoom(roomId);
+        });
+        return $q.all(promises);
+    }
+    methods.getReservationsForRoom = function (roomId) {
+        return $http({
+            method: 'GET',
+            url: baseUrl + '/rooms/'+roomId+'/reservations/'
+        }).then(function (res) {
+            return { roomId: roomId, reservations: res.data};
+        }, function (err) {
+            return err;
+        })
     }
 
     methods.read = function (roomId, reservationId, cb) {
