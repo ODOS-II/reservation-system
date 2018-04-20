@@ -37,8 +37,9 @@
                             <span class="input-group-text" id="starts-min">Minutes</span>
                         </div>
                         <input ng-model="requestConf.startMin"
+                               ng-pattern="/^(0|15|30|60)$/"
                                required
-                               ng-class="{'invalid': requestConferenceForm.startMin.$invalid}"
+                               id="startMin"
                                name="startMin"
                                type="number" min="0" max="59" class="form-control"
                                aria-label="Minutes"
@@ -67,7 +68,9 @@
                             <span class="input-group-text" id="ends-min">Minutes</span>
                         </div>
                         <input ng-model="requestConf.endMin" required ng-class="{'invalid': requestConferenceForm.endMin.$invalid}"
+                               ng-pattern="/^(0|15|30|60)$/"       
                                name="endMin"
+                               id="endMin"
                                type="number" min="0" max="59" class="form-control"
                                aria-label="Minutes"
                                aria-describedby="ends-min">
