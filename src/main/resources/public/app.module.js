@@ -21,7 +21,9 @@
 
     'viewRooms',
     'newRoom',
-    'editRoom'
+    'editRoom',
+    
+    'viewReservation'
 
   ]);
 })();
