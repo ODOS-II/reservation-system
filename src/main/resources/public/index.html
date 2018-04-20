@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="Conference">
+
 <head>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <script>
@@ -10,46 +11,49 @@
   <link rel="stylesheet" href="./bootstrap.min.css">
   <link href="css/style.css" rel="stylesheet" />
   <style type="text/css">
-  [ng\:cloak], [ng-cloak], .ng-cloak {
-    display: none !important;
-  }
+    [ng\:cloak],
+    [ng-cloak],
+    .ng-cloak {
+      display: none !important;
+    }
   </style>
 </head>
+
 <body>
   <script>
     var getUrl = window.location;
-    var baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
+    var baseUrl = getUrl.protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.js"></script>
   <script src="./angular-animate.min.js"></script>
   <script src="./moment.min.js"></script>
   <!-- Application Level Angular -->
-	<script defer src="app.module.js"></script>
-	<script defer src="app.controller.js"></script>
-    <script defer src="app.constants.js"></script>
-    <script defer src="app.config.js"></script>
-   <!-- View-Login Content -->
+  <script defer src="app.module.js"></script>
+  <script defer src="app.controller.js"></script>
+  <script defer src="app.constants.js"></script>
+  <script defer src="app.config.js"></script>
+  <!-- View-Login Content -->
   <link rel="stylesheet" href="components/view-login/view-login.style.css">
-	<script defer src="components/view-login/view-login.module.js"></script>
-	<script defer src="components/view-login/view-login.component.js"></script>
-	<script defer src="components/view-login/view-login.config.js"></script>
+  <script defer src="components/view-login/view-login.module.js"></script>
+  <script defer src="components/view-login/view-login.component.js"></script>
+  <script defer src="components/view-login/view-login.config.js"></script>
   <script defer src="components/view-login/view-login.service.js"></script>
   <!-- View-Home Content -->
   <link rel="stylesheet" href="components/view-home/view-home.style.css">
-	<script defer src="components/view-home/view-home.module.js"></script>
-	<script defer src="components/view-home/view-home.component.js"></script>
-	<script defer src="components/view-home/view-home.config.js"></script>
+  <script defer src="components/view-home/view-home.module.js"></script>
+  <script defer src="components/view-home/view-home.component.js"></script>
+  <script defer src="components/view-home/view-home.config.js"></script>
   <script defer src="components/view-home/view-home.service.js"></script>
 
-  
+
   <!-- Request Conference Content -->
   <link rel="stylesheet" href="components/requestor/request-conference/request-conference.style.css">
   <script defer src="components/requestor/request-conference/request-conference.module.js"></script>
   <script defer src="components/requestor/request-conference/request-conference.component.js"></script>
   <script defer src="components/requestor/request-conference/request-conference.config.js"></script>
   <!--<script defer src="components/requestor/request-conference/request-conference.service.js"></script>-->
-  
+
   <!-- New-User Content -->
   <link rel="stylesheet" href="components/administrator/new-user/new-user.style.css">
   <script defer src="components/administrator/new-user/new-user.module.js"></script>
@@ -118,6 +122,11 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="">ODOS II</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item active">
@@ -129,13 +138,13 @@
             Admin
           </a>
           <div class="dropdown-menu" aria-labelledby="adminDropdown">
-            <a class="dropdown-item" href='#!/users' >Users</a>
+            <a class="dropdown-item" href='#!/users'>Users</a>
             <a class="dropdown-item" href='#!/equipment'>AV Equipment</a>
-           <!--  <a class="dropdown-item" href='#!/conferences'>Conferences</a> -->  
-			<a class="dropdown-item" href='#!/rooms'>Rooms</a>            
+            <!--  <a class="dropdown-item" href='#!/conferences'>Conferences</a> -->
+            <a class="dropdown-item" href='#!/rooms'>Rooms</a>
           </div>
         </li>
-  
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="" id="reservationManagerDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
@@ -163,15 +172,16 @@
     <div ng-controller="ConferenceController">
       <div ng-view></div>
     </div>
-</div>
+  </div>
 
 </body>
 
 
 
 
-<script src="./jquery-3.2.1.min.js" ></script>
-<script src="./popper.min.js" ></script>
+<script src="./jquery-3.2.1.min.js"></script>
+<script src="./popper.min.js"></script>
 <script src="./bootstrap.min.js"></script>
 <script src="./lodash.core.min.js"></script>
+
 </html>
