@@ -44,14 +44,8 @@
                                aria-label="Minutes"
                                aria-describedby="starts-min">
                         <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary active">
-                                <input type="radio" name="options" id="start-option1" autocomplete="off"
-                                       ng-checked="requestConf.startAmPm == 'PM'">AM
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input type="radio" name="options" id="start-option2" autocomplete="off"
-                                       ng-checked="requestConf.startAmPm == 'AM'">PM
-                            </label>
+                            <label class="btn btn-secondary" ng-click="requestConf.startAmPm= 'AM'" ng-class="{ 'active': requestConf.startAmPm === 'AM'}">AM</label>
+                            <label class="btn btn-secondary" ng-click="requestConf.startAmPm= 'PM'" ng-class="{ 'active': requestConf.startAmPm === 'PM'}">PM</label>
                         </div>
                     </div>
                     <div class="form-text text-danger">
@@ -78,14 +72,9 @@
                                aria-label="Minutes"
                                aria-describedby="ends-min">
                         <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary active">
-                                <input type="radio" name="options" id="end-option1" autocomplete="off"
-                                       ng-checked="requestConf.endAmPm == 'PM'">AM
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input type="radio" name="options" id="end-option2" autocomplete="off"
-                                       ng-checked="requestConf.endAmPm == 'AM'">PM
-                            </label>
+                            <label class="btn btn-secondary" ng-click="requestConf.endAmPm= 'AM'" ng-class="{ 'active': requestConf.endAmPm === 'AM'}">AM</label>
+                            <label class="btn btn-secondary" ng-click="requestConf.endAmPm= 'PM'" ng-class="{ 'active': requestConf.endAmPm === 'PM'}">PM</label>
+
                         </div>
                     </div>
                     <div class="form-text text-danger">

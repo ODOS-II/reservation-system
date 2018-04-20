@@ -49,7 +49,7 @@
         if (success == false) { // load mock data if request fails
           loadMockRooms();
         } else {
-          self.rooms = success;
+          self.rooms = success.data._embedded.rooms;
         }
       });
     }
