@@ -35,21 +35,51 @@
             return false;
         }
 
+        self.findRooms = function() {
+            reservationService.getRooms(function (success) {
+                if(success) {
+                    var rooms = success.data._embedded.rooms;
+                    var roomIds = _.map(rooms ,'id');
+                    reservationService.getReservationsForRooms(roomIds).then( function(allReservations) {
+                        self.rooms = self.filterOnlyAvailableRooms(rooms, allReservations);
+                    });
 
+                }
+            });
+        }
 
-    reservationService.getRooms(function (success) {
-    	console.log(success);
-      if(success) {
-        self.rooms = success;
-      }
-    });
+        self.findRooms();
+
+        self.filterOnlyAvailableRooms = (rooms, allReservations) => {
+        return rooms.filter(function(room) {
+            var reservationsMap = _.find(allReservations, {roomId: room.id});
+            if (!reservationsMap || !reservationsMap.reservations) return true;
+            var found =  _.find(reservationsMap.reservations, function(reservation) {
+                var alreadyReserved =  self.alreadyReservedForCurrentSlot(reservation);
+                return alreadyReserved;
+            });
+            return !found;
+        })
+    };
+
+    self.alreadyReservedForCurrentSlot = function(reservation) {
+        var starts = moment(self.date).set(self.startHour, 'h').set(self.startMin, 'minutes');
+        var ends = moment(self.date).set(self.endHour, 'h').set(self.endMin, 'minutes');
+
+        var resStarts = moment(reservation.startTime);
+        var resEnds = moment(reservation.endTime);
+
+        if (starts.isBetween(resStarts, resEnds)) {
+            return true;
+        }
+        if (ends.isBetween(resStarts, resEnds)) {
+            return true;
+        }
+        return false;
+    };
 
     self.reloadRooms = () => {
-      reservationService.getRooms(function (success) {
-    	  if(success) {
-          self.rooms = success;
-        }
-      });
+      self.findRooms();
     }
 
         self.submit = () => {
