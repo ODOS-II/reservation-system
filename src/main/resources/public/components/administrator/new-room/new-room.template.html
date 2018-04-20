@@ -1,4 +1,4 @@
-<!-- Controller is referenced to template via new-user-controller  -->
+<!-- Controller is referenced to template via new-room-controller  -->
 
 <div class="content">
 
@@ -14,6 +14,12 @@
             <option value='3'>3</option>
           </select>
         </div>
+        <div class='form-group row container'>
+          <label class="padding-5" for='avList'>Equipment</label>
+          <select class="col-sm-4 form-control" id='avList' name='avList' multiple
+          	ng-options="eq as eq.name for eq in equipment" ng-model='room.equipment'>
+          </select>
+        </div>
         <div class='form-group'>
           <label for='name'>Name</label>
           <input type='text' class='form-control' id='name' name='name' required ng-model='room.name'>
@@ -25,7 +31,7 @@
         </div>
       
         <button type='button' class='btn btn-info' ng-click='cancel()'>Cancel</button>
-        <button type='button' class='btn btn-success' ng-click='create(user)'>Submit</button>
+        <button type='button' class='btn btn-success' ng-click='create(room)'>Submit</button>
       </form>
       
     </div>
