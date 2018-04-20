@@ -1,4 +1,4 @@
-<!-- Controller is referenced to template via new-room-controller  -->
+<!-- Controller is referenced to template via edit-room-controller  -->
 
 <div class="content">
 
@@ -9,17 +9,18 @@
         <div class='form-group'>
           <label for='buildingId'>Building</label>
           <select id='buildingId' name='buildingId' ng-model='room.buildingId'>
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
+            <option ng-selected="room.buildingId == 1" value='1'>1</option>
+            <option ng-selected="room.buildingId == 2" value='2'>2</option>
+            <option ng-selected="room.buildingId == 3" value='3'>3</option>
           </select>
         </div>
         <div class='form-group row container'>
           <label class="padding-5" for='avList'>Equipment</label>
           <select class="col-sm-4 form-control" id='avList' name='avList' multiple
-          	ng-options="eq as eq.name for eq in equipment" ng-model='room.avEquipment'>
+          	ng-options="eq as eq.name for eq in equipment track by eq.id" ng-model='room.equipment'>
           </select>
         </div>
+        
         <div class='form-group'>
           <label for='name'>Name</label>
           <input type='text' class='form-control' id='name' name='name' required ng-model='room.name'>

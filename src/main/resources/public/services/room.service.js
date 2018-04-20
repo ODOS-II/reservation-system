@@ -35,7 +35,6 @@
             method: 'GET',
             url: baseUrl + '/rooms/'
         }).then(function(res) {
-        	console.log(res);
             cb(res.data._embedded.rooms);
         }, function(res) {
             cb(false);
