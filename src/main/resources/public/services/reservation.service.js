@@ -42,6 +42,17 @@ angular.
       })
     }
 
+    methods.getReservationsForRoom = function (roomId, cb) {
+        $http({
+            method: 'GET',
+            url: baseUrl + '/rooms'+roomId+'/reservations/'
+        }).then(function (res) {
+            cb(res);
+        }, function (res) {
+            cb(false);
+        })
+    }
+
     methods.read = function (roomId, reservationId, cb) {
       $http({
         method: 'GET',
