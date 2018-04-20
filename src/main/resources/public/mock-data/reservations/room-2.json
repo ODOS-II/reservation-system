@@ -4,7 +4,7 @@
     "room": "http://localhost:8080/rooms/2",
     "user": "http://localhost:8080/users/1",
     "startTime": "2016-04-19T19:00:44.19",
-    "endTime": "2020-04-19T23:00:44.192",
+    "endTime": "2019-04-19T23:00:44.192",
     "roomConfiguration": "MEETING"
   }
 ]
