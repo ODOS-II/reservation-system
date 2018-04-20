@@ -6,8 +6,7 @@
         var methods = {};
 
         methods.create = function(user, cb) {
-            console.log(user);
-            console.log('create');
+
             $http({
                 method: 'POST',
                 data: user,
@@ -24,7 +23,6 @@
                 method: 'GET',
                 url: baseUrl + '/users/'
             }).then(function(res) {
-                console.log(res);
                 cb(res.data._embedded.users, null);
             }, function(res) {
                 cb(null, res);
@@ -32,6 +30,8 @@
         };
 
         methods.read = function(id, cb) {
+        	var index = equipment._links.self.href.lastIndexOf('/');
+        	var id = equipment._links.self.href.substring(index +1);
             $http({
                 method: 'GET',
                 url: baseUrl + '/users/' + id
@@ -43,6 +43,8 @@
         }
 
         methods.update = function(user, cb) {
+        	var index = user._links.self.href.lastIndexOf('/');
+        	var id = user._links.self.href.substring(index +1);
             $http({
                 method: 'PUT',
                 url: baseUrl + '/users/' + user.id,
@@ -54,10 +56,10 @@
             })
         }
 
-        methods.delete = function(id, cb) {
+        methods.delete = function(href, cb) {
             $http({
                 method: 'DELETE',
-                url: baseUrl + '/users/' + id
+                url: baseUrl + '/users/' + href
             }).then(function(res) {
                 cb(res, null);
             }, function(res) {

@@ -19,7 +19,8 @@
     'newEquipment',
     'editEquipment',
 
-    'viewConferences'
+    'viewRooms',
+    'newRoom'
 
   ]);
 })();
