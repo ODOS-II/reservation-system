@@ -39,9 +39,40 @@
 
     reservationService.getRooms(function (success) {
       if(success) {
-        self.rooms = success.data._embedded.rooms;
+        var rooms = success.data._embedded.rooms;
+        var roomIds = rooms.map(function(room) { return room.id;});
+        reservationService.getReservationsForRooms(roomIds).then( function(allReservations) {
+            self.rooms = self.filterOnlyAvailableRooms(rooms, allReservations);
+        });
+
       }
     });
+
+    self.filterOnlyAvailableRooms = (rooms, allReservations) => {
+        return rooms.filter(function(room) {
+            var reservations = allReservations.filter(function(r) { return r.roomId === room.id});
+            return reservations.every(function(reservationsMap) {
+                var alreadyReserved =  self.alreadyReservedForCurrentSlot(reservationsMap.reservation);
+                return alreadyReserved;
+            })
+        })
+    };
+
+    self.alreadyReservedForCurrentSlot = function(reservation) {
+        var starts = moment(self.date).set(self.startHour, 'h').set(self.startMin, 'minutes');
+        var ends = moment(self.date).set(self.endHour, 'h').set(self.endMin, 'minutes');
+
+        var resStarts = moment(reservation.startTime);
+        var resEnds = moment(reservation.endTime);
+
+        if (starts.isBetween(resStarts, resEnds)) {
+            return false;
+        }
+        if (ends.isBetween(resStarts, resEnds)) {
+            return false;
+        }
+        return true;
+    };
 
     self.reloadRooms = () => {
       reservationService.getRooms(function (success) {

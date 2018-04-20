@@ -3,7 +3,7 @@ var baseUrl = '';
 'use strict';
 angular.
   module('Conference').
-  factory('reservationService', function ($http) {
+  factory('reservationService', function ($http, $q) {
 
     var methods = {};
 
@@ -42,14 +42,21 @@ angular.
       })
     }
 
-    methods.getReservationsForRoom = function (roomId, cb) {
-        $http({
+    methods.getReservationsForRooms = function (roomIdArray) {
+        // We need a simplified service instead of calling this in a loop
+        var promises = roomIdArray.map(function(roomId) {
+            return { reservation: methods.getReservationsForRoom(roomId) , roomId: roomId};
+        });
+        return $q.all(promises);
+    }
+    methods.getReservationsForRoom = function (roomId) {
+        return $http({
             method: 'GET',
-            url: baseUrl + '/rooms'+roomId+'/reservations/'
+            url: baseUrl + '/rooms/'+roomId+'/reservations/'
         }).then(function (res) {
-            cb(res);
-        }, function (res) {
-            cb(false);
+            return res;
+        }, function (err) {
+            return err;
         })
     }
 
