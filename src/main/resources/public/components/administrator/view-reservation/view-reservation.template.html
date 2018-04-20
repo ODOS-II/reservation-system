@@ -13,17 +13,15 @@
       <table class='table'>
         <tr>
           <thead>
-            <th>Building</th>
-            <th>Room</th>
+			<th>Reservation</th>
             <th>Actions</th>
           </thead>
         </tr>
 
-        <tr ng-repeat='(id, reservations) in reservations'>
-          <td>{{reservations.buildingId}}</td>
-          <td>{{reservations.name}}</td>
+        <tr ng-repeat='(id, reservation) in reservations'>
+          <td>{{reservation.startTime | date: 'HHmm'}}-{{reservation.endTime | date: 'HHmm'}} {{reservation.title}} {{reservation.user.lastName}}
           <td>
-            <button class='btn btn-warning' ng-click='edit($index)'>Edit</button>
+            <button class='btn btn-warning' ng-click='edit($index)' disabled>Edit</button>
             <button class='btn btn-danger' ng-click='delete($index)'>Delete</button>
           </td>
         </tr>

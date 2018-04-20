@@ -1,0 +1,142 @@
+<!-- Controller is referenced to template via view-home-controller  -->
+
+<!--<link rel="stylesheet" href="components/view-home/view-home.style.css">-->
+
+<div class="content">
+  <div class="card">
+    <div class="card-header">Create Reservation</div>
+    <div class="card-body">
+      <form name="requesterenceForm" ng-submit="request.submit()">
+        <div class="row">
+          <div class="col-sm-6">
+            <fieldset>
+              <div class="form-group">
+                <label for="emailInput">Email</label>
+                <input class="form-control" id="emailInput" name="emailInput" aria-describedby="emailInput" type="email" ng-model="request.email"
+                  required>
+              </div>
+              <small class="error text-danger" ng-show="requesterenceForm.emailInput.$error.email">Not valid email</small>
+              <div class="form-group">
+                <label for="date">Date</label>
+                <input id="date" class="form-control" type="date" ng-model="request.date" required>
+              </div>
+                <div class="form-group" >
+                    <label for="startsInput">Starts</label>
+                    <div class="input-group mb-3" id="startsInput">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="starts-hour">Hour</span>
+                        </div>
+                        <input ng-model="request.startHour"
+                               required
+                               ng-class="{'invalid': requesterenceForm.startHour.$invalid}"
+                               type="number" min="1" max="12" class="form-control"
+                               aria-label="Hour"
+                               name="startHour"
+                               aria-describedby="starts-hour">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="starts-min">Minutes</span>
+                        </div>
+                        <input ng-model="request.startMin"
+                               required
+                               ng-class="{'invalid': requesterenceForm.startMin.$invalid}"
+                               name="startMin"
+                               type="number" min="0" max="59" class="form-control"
+                               aria-label="Minutes"
+                               aria-describedby="starts-min">
+                        <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary" ng-click="request.startAmPm= 'AM'" ng-class="{ 'active': request.startAmPm === 'AM'}">AM</label>
+                            <label class="btn btn-secondary" ng-click="request.startAmPm= 'PM'" ng-class="{ 'active': request.startAmPm === 'PM'}">PM</label>
+                        </div>
+                    </div>
+                    <div class="form-text text-danger">
+                        {{request.getDateValidationMessage(requesterenceForm.startHour, requesterenceForm.startMin)}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="endsInput">Ends</label>
+                    <div class="input-group mb-3" id="endsInput">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="ends-hour">Hour</span>
+                        </div>
+                        <input ng-model="request.endHour" required ng-class="{'invalid': requesterenceForm.endHour.$invalid}"
+                               name="endHour"
+                               type="number" ng-min="request.startHour" max="12" class="form-control"
+                               aria-label="Hour"
+                               aria-describedby="ends-hour">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="ends-min">Minutes</span>
+                        </div>
+                        <input ng-model="request.endMin" required ng-class="{'invalid': requesterenceForm.endMin.$invalid}"
+                               name="endMin"
+                               type="number" min="0" max="59" class="form-control"
+                               aria-label="Minutes"
+                               aria-describedby="ends-min">
+                        <div class="input-group-append btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary" ng-click="request.endAmPm= 'AM'" ng-class="{ 'active': request.endAmPm === 'AM'}">AM</label>
+                            <label class="btn btn-secondary" ng-click="request.endAmPm= 'PM'" ng-class="{ 'active': request.endAmPm === 'PM'}">PM</label>
+
+                        </div>
+                    </div>
+                    <div class="form-text text-danger">
+                        {{ request.getDateValidationMessage(requesterenceForm.endHour, requesterenceForm.endMin)}}
+                        {{ request.confRequestWindowValidation(request.startHour, request.startMin, request.startAmPm ,
+                        request.endHour, request.endMin, request.endAmPm)}}
+                    </div>
+                </div>
+              <div class="form-group">
+                <label for="buildingPref">Building Preference</label>
+                <select id="buildingPref" class="form-control" ng-model="request.buildingPref" ng-change="request.reloadRooms()" required>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="room">Room</label>
+                <select id="room" class="form-control" ng-model="request.room">
+                  <option ng-repeat="r in request.rooms" value="{{r._links.self.href}}">{{r.name}}</option>
+                </select>
+              </div>
+            </fieldset>
+          </div>
+          <div class="col-sm-6">
+            <fieldset>
+              <div class="form-group">
+                <label for="conferenceTitle">Conference Title</label>
+                <input class="form-control" id="conferenceTitle" type="text" ng-model="request.conferenceTitle" required>
+              </div>
+              <div class="form-group">
+                <label for="conferenceDetails">ConferenceDetails</label>
+                <textarea id="conferenceDetails" class="form-control" id="exampleTextarea" rows="3" ng-model="request.conferenceDetails"></textarea>
+              </div>
+              <div class="form-group">
+             
+                <label class="control-label" for="user">User</label>
+                
+                <select id='user' name='user' ng-model='request.user'>
+                  <option ng-repeat="r in request.users" value="{{r._links.self.href}}">{{r.firstName}} {{r.lastName}}</option>
+
+                </select>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="col-sm-6">
+              <a href="#!/home" class="btn btn-light btn-block">Cancel</a>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- This should return to home.  -->
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            <!--requesterenceForm.emailInput.$error.email && -->
+            <!-- !request.isDisabled() -->
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -62,10 +62,10 @@ angular.
         })
     }
 
-    methods.read = function (roomId, reservationId, cb) {
+    methods.read = function (id, cb) {
       $http({
         method: 'GET',
-        url: baseUrl + '/rooms/' + roomId + '/reservations/' + id
+        url: baseUrl + '/reservations/' + id
       }).then(function (res) {
         cb(res);
       }, function (res) {
@@ -73,10 +73,10 @@ angular.
       })
     }
 
-    methods.readAll = function (roomId, cb) {
+    methods.readAll = function (cb) {
       $http({
         method: 'GET',
-        url: baseUrl + '/rooms/' + roomId + '/reservations/'
+        url: baseUrl + '/reservations/'
       }).then(function (res) {
         cb(res);
       }, function (res) {
@@ -96,10 +96,10 @@ angular.
       })
     }
 
-    methods.delete = function (roomId, reservationId, cb) {
+    methods.delete = function (id, cb) {
       $http({
         method: 'DELETE',
-        url: baseUrl + '/rooms/' + roomId + '/reservations/' + reservationId
+        url: baseUrl + '/reservations/' + id
       }).then(function (res) {
         cb(true);
       }, function (res) {

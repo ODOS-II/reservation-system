@@ -23,7 +23,8 @@
     'newRoom',
     'editRoom',
     
-    'viewReservation'
+    'viewReservations',
+    'editReservation'
 
   ]);
 })();

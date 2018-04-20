@@ -2,7 +2,7 @@
   'use strict';
 
   angular.
-  module('viewReservations').
+  module('editReservation').
   config(angularConfig);
 
   angularConfig.$inject = ['$locationProvider', '$routeProvider'];
@@ -10,8 +10,8 @@
   function angularConfig($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('!');
     // Route for template render
-    $routeProvider.when('/reservations/', {
-      template: '<view-reservations></view-reservations>'
+    $routeProvider.when('/reservations/edit/:id', {
+      template: '<edit-reservation></edit-reservation>'
     })
     .otherwise({ redirectTo: '/' });
   }
