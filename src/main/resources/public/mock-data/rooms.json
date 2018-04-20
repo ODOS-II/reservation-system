@@ -1,0 +1,28 @@
+
+[
+  {
+    "id": 1,
+    "buildingId": 1,
+    "name": "Large Conf",
+    "occupancy": 50
+  },
+  {
+    "id": 2,
+    "buildingId": 1,
+    "name": "Too Much Booked Conf",
+    "occupancy": 2
+  },
+  {
+    "id": 3,
+    "buildingId": 2,
+    "name": "Goldilocks Conf",
+    "occupancy": 8
+  }
+,
+  {
+    "id": 4,
+    "buildingId": 2,
+    "name": "Bears Room",
+    "occupancy": 8
+  }
+]
