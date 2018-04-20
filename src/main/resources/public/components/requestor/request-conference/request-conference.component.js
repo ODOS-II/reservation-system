@@ -75,20 +75,17 @@
 
         self.submit = () => {
             var starts = moment(self.date).set(self.startHour, 'h').set(self.startMin, 'minutes');
+            starts.set({hour: self.startHour, minute: self.startMin, second: 0, millisecond: 0});
             var ends = moment(self.date).set(self.endHour, 'h').set(self.endMin, 'minutes');
-
+            ends.set({hour: self.endHour, minute: self.endMin, second:0, millisecond: 0});
             // set post data
             var postData = {
                 user: self.user,
-                email: self.email,
-                date: self.date,
-                starts: starts,
-                ends: ends,
-                buildingPref: self.buildingPref,
+                startTime: starts,
+                endTime: ends,
                 room: self.room,
-                conferenceTitle: self.conferenceTitle,
-                conferenceDetails: self.conferenceDetails,
-                invites: self.invites
+                title: self.conferenceTitle,
+                roomConfiguration: "MEETING"
             };
 
       // create reservation
