@@ -1,0 +1,36 @@
+<!-- Controller is referenced to template via new-user-controller  -->
+
+<div class="content">
+
+  <div class='card'>
+    <div class='card-header'>
+      Room List
+      <div class='float-right'>
+          <a href='#!/rooms/create' class='btn btn-text'>Create Room</a>
+      </div>
+    </div>
+    <div class='card-body'>
+      <table class='table'>
+        <tr>
+          <thead>
+            <th>Building</th>
+            <th>Name</th>
+            <th>Occupancy</th>
+            <th>Actions</th>
+          </thead>
+        </tr>
+
+        <tr ng-repeat='(id, room) in rooms'>
+          <td>{{room.buildingId}}</td>
+          <td>{{room.name}}</td>
+          <td>{{room.occupancy}}</td>
+          <td>
+            <button class='btn btn-warning' ng-click='edit($index)'>Edit</button>
+            <button class='btn btn-danger' ng-click='delete($index)'>Delete</button>
+          </td>
+        </tr>
+      </table>
+ 
+<div class="content">
+
+</div>

@@ -7,7 +7,7 @@
     
         var methods = {};
 
-    methods.create = function(user, cb) {
+    methods.create = function(room, cb) {
         $http({
             method: 'POST',
             data: room,
@@ -35,16 +35,19 @@
             method: 'GET',
             url: baseUrl + '/rooms/'
         }).then(function(res) {
-            cb(res);
+        	console.log(res);
+            cb(res.data._embedded.rooms);
         }, function(res) {
             cb(false);
         });
     }
 
     methods.update = function(room, cb) {
+    	var index = room._links.self.href.lastIndexOf('/');
+    	var id = room._links.self.href.substring(index +1);
         $http({
             method: 'PUT',
-            url: baseUrl + '/rooms/' + room.id,
+            url: baseUrl + '/rooms/' + id,
             data: room
         }).then(function(res) {
             cb(res);

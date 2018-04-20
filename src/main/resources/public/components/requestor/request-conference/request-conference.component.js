@@ -38,17 +38,15 @@
 
 
     reservationService.getRooms(function (success) {
+    	console.log(success);
       if(success) {
-        self.rooms = success.data._embedded.rooms;
+        self.rooms = success;
       }
     });
 
     self.reloadRooms = () => {
       reservationService.getRooms(function (success) {
-        //console.log(success);
-        if (success == false) { // load mock data if request fails
-          loadMockRooms();
-        } else {
+    	  if(success) {
           self.rooms = success;
         }
       });
