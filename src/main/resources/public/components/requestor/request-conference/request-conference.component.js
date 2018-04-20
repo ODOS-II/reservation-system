@@ -35,20 +35,22 @@
             return false;
         }
 
+        self.findRooms = function() {
+            reservationService.getRooms(function (success) {
+                if(success) {
+                    var rooms = success.data._embedded.rooms;
+                    var roomIds = _.map(rooms ,'id');
+                    reservationService.getReservationsForRooms(roomIds).then( function(allReservations) {
+                        self.rooms = self.filterOnlyAvailableRooms(rooms, allReservations);
+                    });
 
+                }
+            });
+        }
 
-    reservationService.getRooms(function (success) {
-      if(success) {
-        var rooms = success.data._embedded.rooms;
-        var roomIds = _.map(rooms ,'id');
-        reservationService.getReservationsForRooms(roomIds).then( function(allReservations) {
-            self.rooms = self.filterOnlyAvailableRooms(rooms, allReservations);
-        });
+        self.findRooms();
 
-      }
-    });
-
-    self.filterOnlyAvailableRooms = (rooms, allReservations) => {
+        self.filterOnlyAvailableRooms = (rooms, allReservations) => {
         return rooms.filter(function(room) {
             var reservationsMap = _.find(allReservations, {roomId: room.id});
             if (!reservationsMap || !reservationsMap.reservations) return true;
@@ -77,14 +79,7 @@
     };
 
     self.reloadRooms = () => {
-      reservationService.getRooms(function (success) {
-        //console.log(success);
-        if (success == false) { // load mock data if request fails
-          loadMockRooms();
-        } else {
-          self.rooms = success.data._embedded.rooms;
-        }
-      });
+      self.findRooms();
     }
 
         self.submit = () => {
