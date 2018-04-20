@@ -17,7 +17,7 @@
 
     userService.readAll(function(res, error) {
       if(res) {
-        $scope.users = res.body;
+        $scope.users = res;
       } else if(error) {
         $scope.error = true;
       }
