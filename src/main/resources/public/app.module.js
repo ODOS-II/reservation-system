@@ -20,7 +20,10 @@
     'editEquipment',
 
     'viewRooms',
-    'newRoom'
+    'newRoom',
+    'editRoom',
+    
+    'viewReservation'
 
   ]);
 })();
