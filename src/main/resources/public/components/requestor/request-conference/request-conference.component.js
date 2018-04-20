@@ -40,7 +40,7 @@
     reservationService.getRooms(function (success) {
       if(success) {
         var rooms = success.data._embedded.rooms;
-        var roomIds = rooms.map(function(room) { return room.id;});
+        var roomIds = _.map(rooms ,'id');
         reservationService.getReservationsForRooms(roomIds).then( function(allReservations) {
             self.rooms = self.filterOnlyAvailableRooms(rooms, allReservations);
         });
@@ -50,11 +50,13 @@
 
     self.filterOnlyAvailableRooms = (rooms, allReservations) => {
         return rooms.filter(function(room) {
-            var reservations = allReservations.filter(function(r) { return r.roomId === room.id});
-            return reservations.every(function(reservationsMap) {
-                var alreadyReserved =  self.alreadyReservedForCurrentSlot(reservationsMap.reservation);
+            var reservationsMap = _.find(allReservations, {roomId: room.id});
+            if (!reservationsMap || !reservationsMap.reservations) return true;
+            var found =  _.find(reservationsMap.reservations, function(reservation) {
+                var alreadyReserved =  self.alreadyReservedForCurrentSlot(reservation);
                 return alreadyReserved;
-            })
+            });
+            return !found;
         })
     };
 
@@ -66,12 +68,12 @@
         var resEnds = moment(reservation.endTime);
 
         if (starts.isBetween(resStarts, resEnds)) {
-            return false;
+            return true;
         }
         if (ends.isBetween(resStarts, resEnds)) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     };
 
     self.reloadRooms = () => {

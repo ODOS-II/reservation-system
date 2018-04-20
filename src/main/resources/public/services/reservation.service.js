@@ -43,9 +43,8 @@ angular.
     }
 
     methods.getReservationsForRooms = function (roomIdArray) {
-        // We need a simplified service instead of calling this in a loop
         var promises = roomIdArray.map(function(roomId) {
-            return { reservation: methods.getReservationsForRoom(roomId) , roomId: roomId};
+            return methods.getReservationsForRoom(roomId);
         });
         return $q.all(promises);
     }
@@ -54,7 +53,7 @@ angular.
             method: 'GET',
             url: baseUrl + '/rooms/'+roomId+'/reservations/'
         }).then(function (res) {
-            return res;
+            return { roomId: roomId, reservations: res.data};
         }, function (err) {
             return err;
         })
