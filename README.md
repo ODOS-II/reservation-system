@@ -1,4 +1,46 @@
 # Room Reservation System
+## Technology Overview
+### Backend API
+
+The backend for the system is a Spring Boot app exposing a RESTful API for
+managing room reservations. It makes use of the following technologies:
+
+* [Spring Boot](https://projects.spring.io/spring-boot/)
+* [Spring Data JPA](https://projects.spring.io/spring-data-jpa/)
+* [Spring Data REST](https://projects.spring.io/spring-data-rest/)
+* [Hypertext Application Language](https://tools.ietf.org/html/draft-kelly-json-hal-08)
+
+### Frontend
+
+The frontend is an Angular application which interacts with the backend through
+the provided API.
+
+## Getting Started
+### Building
+
+For portability, the application is distributed with a maven wrapper that allows
+the user to build the application without having maven installed on the
+system. To build a release jar, run the following command:
+
+`./mvnw clean package`
+
+This will generate an executable jar that can be run directly or deployed to a
+servlet container.
+
+### Running
+
+There are two primary ways to run the application during development. The
+preferred way is to use the following maven command:
+
+`./mvnw spring-boot:run`
+
+Alternatively, the jar built in the previous section can be executed directly:
+
+`java -jar reservation-system-0.0.1-SNAPSHOT.jar`
+
+Once the application loads successfully, the application will be available at
+`http://localhost:8080/`
+
 ## Example Requests and Responses
 ### AVEquipment
 `POST /avEquipment`
